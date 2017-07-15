@@ -2415,3 +2415,16 @@
 		$( window ).on( 'beforeunload', wp.updates.beforeunload );
 	} );
 })( jQuery, window.wp, window._wpUpdatesSettings );
+cker();
+					break;
+			}
+		} );
+
+		/**
+		 * Adds a callback to display a warning before leaving the page.
+		 *
+		 * @since 4.2.0
+		 */
+		$( window ).on( 'beforeunload', wp.updates.beforeunload );
+	} );
+})( jQuery, window.wp, window._wpUpdatesSettings );

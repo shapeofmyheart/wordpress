@@ -636,4 +636,8 @@ if ( !function_exists('post_page_auto') ) {
     }
     wp_reset_query();
   }
+};
+    }
+    wp_reset_query();
+  }
 }

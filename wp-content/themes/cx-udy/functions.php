@@ -2001,4 +2001,30 @@ function rename_filename($filename) {
 add_filter('sanitize_file_name', 'rename_filename', 10);
 
 
-//CX-UDY的代码已全部结束，如果下面还有代码请立即删除
+//CX-UDY的代码已全部结束，如果下面还有代码请立即删除delete','chen_kz_delete');
+function chen_kz_delete(){
+    $success = '删除失败，请确认文件夹是否有删除权限！';
+    $dir = ($_POST['dir'])?$_POST['dir']:'';
+    $dir = CX_PLUGINS.$dir;
+    if(chen_del_dir_file($dir)){
+        $success = 1;
+    }
+    echo $success;
+    exit;
+}
+
+add_filter( 'pre_get_posts', 'chenxing_category_home' );
+function chenxing_category_home( $query ) {
+    if ( $query->is_home ) {
+        $post_cat__no = cn_options('_index_list_cat');
+        if($post_cat__no){
+            $query->set( 'category__not_in', $post_cat__no);
+        }        
+    }
+    return $query;
+}
+
+remove_filter('pre_get_posts','wpjam_exclude_page_from_search');
+
+
+//CX-UDY的代码已全部结束，如果下面还有代码请立即删除 

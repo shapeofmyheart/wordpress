@@ -138,4 +138,4 @@ $avatar_US = chenxing_get_avatar($current_user->ID , '100' , chenxing_get_avatar
 					?>
 				</ul>
 		</nav>
-<!-- 头部代码end -->
+<!-- 头部代码end -->>

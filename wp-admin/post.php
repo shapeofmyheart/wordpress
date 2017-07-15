@@ -290,3 +290,4 @@ default:
 	exit();
 } // end switch
 include( ABSPATH . 'wp-admin/admin-footer.php' );
+min/admin-footer.php' );

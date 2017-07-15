@@ -1,0 +1,1 @@
+<div id="player" style="position: absolute; top:30px;"></div>

@@ -4223,3 +4223,28 @@ function wp_check_term_hierarchy_for_loops( $parent, $term_id, $taxonomy ) {
 
 	return $parent;
 }
+e new parent for the term.
+ */
+function wp_check_term_hierarchy_for_loops( $parent, $term_id, $taxonomy ) {
+	// Nothing fancy here - bail
+	if ( !$parent )
+		return 0;
+
+	// Can't be its own parent.
+	if ( $parent == $term_id )
+		return 0;
+
+	// Now look for larger loops.
+	if ( !$loop = wp_find_hierarchy_loop( 'wp_get_term_taxonomy_parent_id', $term_id, $parent, array( $taxonomy ) ) )
+		return $parent; // No loop
+
+	// Setting $parent to the given value causes a loop.
+	if ( isset( $loop[$term_id] ) )
+		return 0;
+
+	// There's a loop, but it doesn't contain $term_id. Break the loop.
+	foreach ( array_keys( $loop ) as $loop_member )
+		wp_update_term( $loop_member, $taxonomy, array( 'parent' => 0 ) );
+
+	return $parent;
+}

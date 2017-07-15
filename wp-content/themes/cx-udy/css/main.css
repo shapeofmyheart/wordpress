@@ -671,3 +671,62 @@ span.ajax_down_mima {display:inline-block;margin-top:20px;font-size:1.3em;color:
 #image_div p img {margin-bottom:0}
 .pan_left {position:absolute;left:-60px;background:rgba(80,79,79,0.75);height:100%;top:0;padding:0 5px;color:#fff;text-align:center;width:60px}
 .pan_right {position:absolute;right:-60px;background:rgba(80,79,79,0.75);height:100%;top:0;padding:0 5px;color:#fff;text-align:center;width:60px}
+0px}
+
+.vip-hide-type {
+    background: #f4f4f4;
+    border: solid 1px #f57268;
+    border-radius: 5px;
+    position: relative;
+    padding: 10px;
+    padding-top: 40px;
+}
+.vip-hide-type span {
+    background: #f57268;
+    padding: 5px 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    border-radius: 5px 0 5px 0;
+}
+.vip-hide-type p {
+    margin:0;
+}
+
+.cx-udy-demo {
+    background: #f2f2f2;
+    border: solid 1px #03A9F4;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+    padding-top: 40px;
+}
+.cx-udy-demo span {
+    background: #03a9f4;
+    padding: 5px 10px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100px;
+    color: #fff;
+    border-radius: 0 0 5px 5px;
+    margin-left: -50px;
+}
+
+.cx-udy-demo .cx-udy-demo-bottom a {
+    padding: 8px 20px;
+    background: #4CAF50;
+    margin: 5px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.cx-udy-demo a.cx-demo-yanshi{
+	background: #F44336;
+}
+.cx-udy-demo .cx-udy-demo-bottom a:hover {
+	background: #000;
+}

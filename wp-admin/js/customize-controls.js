@@ -5500,3 +5500,17 @@
 	});
 
 })( wp, jQuery );
+ow ).on( 'blur.wp-customize-changeset-update', function() {
+				updateChangesetWithReschedule();
+			} );
+
+			// Save changeset before unloading window.
+			$( window ).on( 'beforeunload.wp-customize-changeset-update', function() {
+				updateChangesetWithReschedule();
+			} );
+		} ());
+
+		api.trigger( 'ready' );
+	});
+
+})( wp, jQuery );

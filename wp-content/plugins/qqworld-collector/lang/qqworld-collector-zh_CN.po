@@ -6212,3 +6212,71 @@ msgstr "进一步弱化已有水印的效果。"
 
 #~ msgid "Successed save remote images"
 #~ msgstr "成功保存远程图片"
+项，当远程图片名包含中文或其他东亚字符的时候，将自动更改图片文"
+#~ "件名。建议开启。"
+
+#~ msgid ""
+#~ "Automatic reduction is greater than the size of the picture. if you want "
+#~ "image width less than 800px with any size height, please set width 800 "
+#~ "and left height blank."
+#~ msgstr ""
+#~ "自动缩小大于该尺寸的图像。如果你想要宽度不超过800px和任意高度图片，请设置"
+#~ "宽度800，并设置高度为空。"
+
+#~ msgid ""
+#~ "Automatic reduction is greater than the size of the picture. if you want "
+#~ "image width 800px with any size height, please set width 800 and left "
+#~ "height blank."
+#~ msgstr "自动缩小大于改尺寸的图像。如果你想要"
+
+#~ msgid "Automatic reduction is greater than the size of the picture."
+#~ msgstr "自动缩小大于改尺寸的图像。"
+
+#~ msgid "Folder"
+#~ msgstr "目录"
+
+#~ msgid "Optimize Options"
+#~ msgstr "优化选项"
+
+#~ msgid "If you wanna use local media library, choose the Use-local-server."
+#~ msgstr "如果你想使用本地媒体库，请选择使用本地服务器。"
+
+#~ msgid "Use local media library"
+#~ msgstr "使用本地媒体库"
+
+#~ msgid "Using Cookie-Free Domains to display images."
+#~ msgstr "使用免Cookie域名(Cookie-Free Domains)来显示图片。"
+
+#~ msgid "Portion of remote images have been saved."
+#~ msgstr "已保存部分远程图像。"
+
+#~ msgid "Has Missing/Undownloadable images."
+#~ msgstr "有 不存在/不可下载 的远程图像。"
+
+#~ msgid ""
+#~ "Ever since the QQWorld-Auto-Save-Image v1.7.2 released, the plugin core "
+#~ "had a big modification, please reset the <a href=\"%s\">settings</a>."
+#~ msgstr ""
+#~ "自动 QQWorld自动保存图片 v1.7.2发布，插件核心有较大更新，请重新<a href="
+#~ "\"%s\">设置</a>。"
+
+#~ msgid ""
+#~ "Just for preview, The complete feature will on the Pro version. Don't "
+#~ "worry, other features will be free forever."
+#~ msgstr "仅仅用于预览，专业版将提供完整的功能。别担心，其他功能将永久免费。"
+
+#~ msgid "Upload a Watermark Image"
+#~ msgstr "上传水印图片"
+
+#~ msgid "Upload"
+#~ msgstr "上传"
+
+#~ msgid "Type"
+#~ msgstr "类型"
+
+#, fuzzy
+#~ msgid "Change Image File Name"
+#~ msgstr "更改图片文件名"
+
+#~ msgid "Successed save remote images"
+#~ msgstr "成功保存远程图片"

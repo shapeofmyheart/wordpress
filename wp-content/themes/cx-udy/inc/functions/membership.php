@@ -399,4 +399,4 @@ function chenxing_member_icon($uid){
 	return $icon;
 }
 
-?>
+?>>

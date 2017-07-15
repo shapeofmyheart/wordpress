@@ -32,4 +32,16 @@
 		<?php wp_footer();?>
 		<!--移动侧边导航-->	
 	</body>
+</html>otime($admin_time))/86400);
+					 ?>+</div>
+				</div>
+			</div>
+		</div>
+		<?php } ?>
+		<footer class="w100 cl">
+			<?php echo cx_foot(); ?>
+		 </footer>
+		<?php wp_footer();?>
+		<!--移动侧边导航-->	
+	</body>
 </html>

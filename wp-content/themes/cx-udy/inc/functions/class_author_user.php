@@ -460,4 +460,4 @@ class Author_Web extends ChenUser{
 	}	
 
 }
-$chen_author = new Author_Web();
+$chen_author = new Author_Web(););

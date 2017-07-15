@@ -1016,3 +1016,22 @@ class WP_Http {
 	}
 
 }
+s.nl/~aeron/regex/ for IPv6 regex
+	 *
+	 * @since 3.7.0
+	 * @static
+	 *
+	 * @param string $maybe_ip A suspected IP address
+	 * @return integer|bool Upon success, '4' or '6' to represent a IPv4 or IPv6 address, false upon failure
+	 */
+	public static function is_ip_address( $maybe_ip ) {
+		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $maybe_ip ) )
+			return 4;
+
+		if ( false !== strpos( $maybe_ip, ':' ) && preg_match( '/^(((?=.*(::))(?!.*\3.+\3))\3?|([\dA-F]{1,4}(\3|:\b|$)|\2))(?4){5}((?4){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i', trim( $maybe_ip, ' []' ) ) )
+			return 6;
+
+		return false;
+	}
+
+}

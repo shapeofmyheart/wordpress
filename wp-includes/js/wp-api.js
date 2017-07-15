@@ -1393,3 +1393,13 @@
 	wp.api.loadPromise = wp.api.init();
 
 } )();
+
+
+	/**
+	 * Construct the default endpoints and add to an endpoints collection.
+	 */
+
+	// The wp.api.init function returns a promise that will resolve with the endpoint once it is ready.
+	wp.api.loadPromise = wp.api.init();
+
+} )();

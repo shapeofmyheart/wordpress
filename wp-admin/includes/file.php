@@ -1294,3 +1294,18 @@ function wp_print_request_filesystem_credentials_modal() {
 	</div>
 	<?php
 }
+$filesystem_credentials_are_stored );
+	if ( ! $request_filesystem_credentials ) {
+		return;
+	}
+	?>
+	<div id="request-filesystem-credentials-dialog" class="notification-dialog-wrap request-filesystem-credentials-dialog">
+		<div class="notification-dialog-background"></div>
+		<div class="notification-dialog" role="dialog" aria-labelledby="request-filesystem-credentials-title" tabindex="0">
+			<div class="request-filesystem-credentials-dialog-content">
+				<?php request_filesystem_credentials( site_url() ); ?>
+			</div>
+		</div>
+	</div>
+	<?php
+}

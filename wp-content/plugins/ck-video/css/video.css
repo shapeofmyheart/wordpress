@@ -1,0 +1,143 @@
+.video {
+	z-index:5;
+	position:relative;
+	text-align: center;
+	text-indent:0px;
+}
+.videoa {
+	z-index:5;
+	position:relative;
+	margin:0 auto;
+	text-align: center;
+}
+
+.video_box {
+	float: left;
+	padding: 4px;
+	Margin: 0.5%;
+	width: 22%;
+	height: auto;
+	border: 3px solid #c0c0c0;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+}
+
+.video_box:hover {
+	border: 3px solid #FCD199;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+}
+
+.video_box a {
+	color: #f90;
+}
+
+.ck_list_img {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 85px;
+}
+
+.ck_list_img img {
+	position: relative;
+	top: 0%;
+	width: 100%;
+	height: auto;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+}
+
+.ck_list_img img:hover {
+	position: relative;
+	top: -5%;
+	height: auto;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+}
+
+.video_box a:hover {
+	color: #f90;
+}
+
+.ck_list_title {
+	display:block;
+	margin-top: 5px;
+	width:100%;
+	height:20px;
+	overflow:hidden;
+}
+
+.ck_box_left {
+	float: left;
+	width: 78px;
+	text-align: left;
+}
+
+.ck_box_right {
+	float: right;
+	margin: 3px 1px 1px 0;
+	margin-right: 6px;
+	width: 78px;
+	text-align: right;
+}
+
+.videolist {
+	float: left;
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.videolist p {
+	margin: 0px;
+}
+
+.daojs {
+	position:relative;
+	top: 24px;
+	height:24px;
+	width: 95%;
+	display: block;
+	color: #FFF;
+	text-align: right;
+	margin:0 auto;
+	z-index:55;
+	filter:alpha(opacity=80);
+	-moz-opacity:0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+.diranaly {
+	position:relative;
+	height:24px;
+	width: 140px;
+	display: block;
+	font-size: 14px;
+	color: #fff;
+	float:right;
+	background: none repeat scroll 0 0 #0d97d8;
+	text-align: center;
+	margin-right:10px;
+	border-radius: 3px;
+	z-index:65;
+}
+.diranaly a{
+	color: #fff;
+	text-align: center;
+	cursor:pointer;
+}
+.daojst {
+	background: #555;
+}

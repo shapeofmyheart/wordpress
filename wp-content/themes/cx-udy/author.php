@@ -568,4 +568,12 @@ if( $get_tab=='message' ) {
 	</div>
 </div>
 <!--/.Main Wrap -->
+<?php get_footer();消息end
+?>
+		 </div>
+		<!-- /.Content -->
+		</div>
+	</div>
+</div>
+<!--/.Main Wrap -->
 <?php get_footer();

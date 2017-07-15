@@ -88,4 +88,47 @@ function add_custom_field_automatically($post_ID) {
 //                                                                                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//扩展代码放到上面一行 .end_update_core',    create_function('$a', "return null;")); // 关闭核心提示
+add_filter('pre_site_transient_update_plugins', create_function('$a', "return null;")); // 关闭插件提示
+add_filter('pre_site_transient_update_themes',  create_function('$a', "return null;")); // 关闭主题提示
+remove_action('admin_init', '_maybe_update_plugins'); // 禁止 WordPress 更新插件
+remove_action('admin_init', '_maybe_update_core');    // 禁止 WordPress 检查更新
+remove_action('admin_init', '_maybe_update_themes');  // 禁止 WordPress 更新主题
+
+
+
+/**
+ * WordPress 媒体库只显示用户自己上传的文件
+ * https://www.wpdaxue.com/view-user-own-media-only.html
+ */
+//在文章编辑页面的[添加媒体]只显示用户自己上传的文件
+function my_upload_media( $wp_query_obj ) {
+	global $current_user, $pagenow;
+	if( !is_a( $current_user, 'WP_User') )
+		return;
+	if( 'admin-ajax.php' != $pagenow || $_REQUEST['action'] != 'query-attachments' )
+		return;
+	if( !current_user_can( 'manage_options' ) && !current_user_can('manage_media_library') )
+		$wp_query_obj->set('author', $current_user->ID );
+	return;
+}
+add_action('pre_get_posts','my_upload_media');
+ 
+//在[媒体库]只显示用户上传的文件
+function my_media_library( $wp_query ) {
+    if ( strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-admin/upload.php' ) !== false ) {
+        if ( !current_user_can( 'manage_options' ) && !current_user_can( 'manage_media_library' ) ) {
+            global $current_user;
+            $wp_query->set( 'author', $current_user->id );
+        }
+    }
+}
+add_filter('parse_query', 'my_media_library' );
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                       //
+//  以下是主题伪静态规则，适用于/%category%/%post_id%.html样式，如果使用其他样式需要修改以下规则         //
+//                                                                                                       //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //扩展代码放到上面一行 .end

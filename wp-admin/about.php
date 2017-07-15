@@ -286,3 +286,9 @@ _n_noop( '<strong>Version %1$s</strong> addressed some security issues and fixed
 
 /* translators: %s: Codex URL */
 __( 'For more information, see <a href="%s">the release notes</a>.' );
+ators: 1: WordPress version number, 2: plural number of bugs. More than one security issue. */
+_n_noop( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
+         '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.' );
+
+/* translators: %s: Codex URL */
+__( 'For more information, see <a href="%s">the release notes</a>.' );

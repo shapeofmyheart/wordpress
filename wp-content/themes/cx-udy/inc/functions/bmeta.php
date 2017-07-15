@@ -125,3 +125,6 @@ function delete_chenxing_meta( $key, $value=0, $uid='all' ){
     }    
     return false;
 }
+    }    
+    return false;
+}

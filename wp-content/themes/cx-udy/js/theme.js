@@ -31,4 +31,13 @@ $('.continue-pay').on('click',function(){
 			}
 		}
 	});
+});rency=='cash'){
+				oid_obj.val(response.order.order_id);				
+				form.submit();
+			}else{
+				alert(response.msg);
+				return false;
+			}
+		}
+	});
 });

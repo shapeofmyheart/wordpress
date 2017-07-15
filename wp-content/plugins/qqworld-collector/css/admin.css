@@ -328,3 +328,30 @@ ul[id^="noty_"] li {
 		padding: 0 18px;
 	}
 }
+
+#banner-container {
+	position: relative;
+	margin: 0;
+	display: inline-block;
+}
+#banner-container .packaging {
+	position: absolute;
+	right: -150px;
+	top: 90px;
+}
+
+#contact-list .qr-code {
+	border: 5px solid #fff;
+	width: 150px;
+	position: relative;
+	-webkit-transition: transform .5s cubic-bezier(0.175,0.885,0.320,1.275), box-shadow .25s;
+	-moz-transition: transform .5s cubic-bezier(0.175,0.885,0.320,1.275), box-shadow .25s;
+	-o-transition: transform .5s cubic-bezier(0.175,0.885,0.320,1.275), box-shadow .25s;
+	-ms-transition: transform .5s cubic-bezier(0.175,0.885,0.320,1.275), box-shadow .25s;
+	transition: transform .5s cubic-bezier(0.175,0.885,0.320,1.275), box-shadow .25s;
+}
+#contact-list .qr-code:hover {
+	transform: scale(2,2);
+	box-shadow: 0 0 20px rgba(0,0,0,.15);
+	z-index: 1;
+}

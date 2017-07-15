@@ -6487,3 +6487,17 @@ class wp_xmlrpc_server extends IXR_Server {
 		return apply_filters( 'xmlrpc_pingback_error', new IXR_Error( $code, $message ) );
 	}
 }
+.
+	 * @return IXR_Error Error object.
+	 */
+	protected function pingback_error( $code, $message ) {
+		/**
+		 * Filters the XML-RPC pingback error return.
+		 *
+		 * @since 3.5.1
+		 *
+		 * @param IXR_Error $error An IXR_Error object containing the error code and message.
+		 */
+		return apply_filters( 'xmlrpc_pingback_error', new IXR_Error( $code, $message ) );
+	}
+}

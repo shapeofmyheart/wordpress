@@ -4366,3 +4366,30 @@ final class WP_Customize_Manager {
 		return get_custom_logo();
 	}
 }
+aram string $value URL.
+	 * @return string Sanitized URL.
+	 */
+	public function _sanitize_external_header_video( $value ) {
+		return esc_url_raw( trim( $value ) );
+	}
+
+	/**
+	 * Callback for rendering the custom logo, used in the custom_logo partial.
+	 *
+	 * This method exists because the partial object and context data are passed
+	 * into a partial's render_callback so we cannot use get_custom_logo() as
+	 * the render_callback directly since it expects a blog ID as the first
+	 * argument. When WP no longer supports PHP 5.3, this method can be removed
+	 * in favor of an anonymous function.
+	 *
+	 * @see WP_Customize_Manager::register_controls()
+	 *
+	 * @since 4.5.0
+	 * @access private
+	 *
+	 * @return string Custom logo.
+	 */
+	public function _render_custom_logo_partial() {
+		return get_custom_logo();
+	}
+}
