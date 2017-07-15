@@ -1,0 +1,377 @@
+<?php
+/* 
+Template Name: 登陆VS注册页面
+*/
+
+wp_get_header();
+$home_url_re = get_option('siteurl');
+switch ($_GET['wp_type']){
+case 'pwd':
+  //找回密码
+  global $wpdb, $user_ID;
+  //获取本页面的链接地址
+  function tg_validate_url() {
+      global $post;
+      $page_url = cx_redirect_canonical(esc_url(get_permalink( $post->ID )));
+      $urlget = strpos($page_url, "?");
+      if ($urlget === false) {
+          $concate = "?";
+      } else {
+          $concate = "&";
+      }
+      return $page_url.$concate;
+  }
+
+  if (!$user_ID) {
+     /*** 通过重置链接访问本页面 ***/
+     if(isset($_GET['key']) && $_GET['action'] == "reset_pwd") { //如果存在key且action参数似乎reset_pwd
+      $reset_key = $_GET['key']; //获取密匙
+      $user_login = $_GET['login']; //获取用户名
+      $user_data = $wpdb->get_row($wpdb->prepare("SELECT ID, user_login, user_email FROM $wpdb->users WHERE user_activation_key = %s AND user_login = %s", $reset_key, $user_login));
+      //通过key和用户名验证数据
+      $user_login = $user_data->user_login;
+      $user_email = $user_data->user_email;
+      if(!empty($reset_key) && !empty($user_data)) {
+          $new_password = wp_generate_password(7, false); //生成7位随机密码
+          //echo $new_password; exit();
+          wp_set_password( $new_password, $user_data->ID ); //重置密码
+          //通过邮件将密码发送给用户
+          $message = __('账户的新密码为:') . "\r\n\r\n";
+          $message .= get_option('siteurl') . "\r\n\r\n";
+          $message .= sprintf(__('用户名: %s'), $user_login) . "\r\n\r\n";
+          $message .= sprintf(__('密码: %s'), $new_password) . "\r\n\r\n";
+          $message .= __('你可以使用你的新密码通过下面的链接登录: ') . get_option('siteurl')."/login" . "\r\n\r\n";
+          if ( $message && !wp_mail($user_email, '密码重置请求', $message) ) {
+              echo "<div class='error'>邮件发送失败-原因未知</div>";
+              exit();
+          } else {
+              $redirect_to = tg_validate_url()."action=reset_success";//跳转到登陆成功页面(还是本页面地址)
+              wp_safe_redirect($redirect_to);
+              exit();
+          }
+      } else{
+          exit('无效的key.');
+      }
+  }
+    /*** 重置成功输入提示 ***/
+    if(isset($_GET['action']) && $_GET['action'] == "reset_success") { //如果动作为reset_success就是成功了哇
+      exit('<span class="success">密码重置成功，已经通过邮件发送给您，请查收。</span>');
+    }
+    /*** 正常访问本页面提交重置申请 ***/
+     if(isset($_POST['action']) && $_POST['action'] == "tg_pwd_reset"){ //判断是否为请求重置密码
+      if ( !wp_verify_nonce( $_POST['tg_pwd_nonce'], "tg_pwd_nonce")) { //检查随机数
+          exit("不要开玩笑");
+      }
+      if(empty($_POST['user_input'])) {
+          echo "<div class='error'>请输入用户名或E-mail地址</div>";
+          exit();
+      }
+      //过滤提交的数据
+      $user_input = isset($_POST['user_input'])? trim($_POST['user_input']):'';
+      if ( strpos($user_input, '@') ) { //判断用户提交的是邮件还是用户名
+          $user_data = get_user_by('email',$user_input); //通过Email获取用户数据
+      //print_r($user_data);
+          if(empty($user_data) || in_array('administrator', $user_data->roles)) { //排除管理员
+              echo "<div class='error'>无效的E-mail地址!</div>";
+              exit();
+          }
+      } else {
+          $user_data = get_user_by('login',$user_input); //通过用户名获取用户数据
+          if(empty($user_data) || in_array('administrator', $user_data->roles)) { //排除管理员
+              echo "<div class='error'>无效的用户名!</div>";
+              exit();
+          }
+      }
+      $user_login = $user_data->user_login;
+      $user_email = $user_data->user_email;
+      $key = $wpdb->get_var($wpdb->prepare("SELECT user_activation_key FROM $wpdb->users WHERE user_login = %s", $user_login)); //从数据库中获取密匙
+      if(empty($key)) { //如果为空
+          //generate reset keys生成 keys
+          $key = wp_generate_password(20, false); //生成一个20位随机密码用做密匙
+          $wpdb->update($wpdb->users, array('user_activation_key' => $key), array('user_login' => $user_login)); //更新到数据库
+      }
+      //邮件内容
+      $message = __('有人提交了重置下面账户密码的请求:') . "\r\n\r\n";
+      $message .= get_option('siteurl') . "\r\n\r\n";
+      $message .= sprintf(__('用户名: %s'), $user_login) . "\r\n\r\n";
+      $message .= __('如果不是您本人操作，请忽略这个邮件即可.') . "\r\n\r\n";
+      $message .= __('如果需要重置密码，请访问下面的链接:') . "\r\n\r\n";
+      $message .= tg_validate_url() . "action=reset_pwd&wp_type=pwd&key=$key&login=" . rawurlencode($user_login) . "\r\n"; //注意tg_validate_url()，注意密码重置的链接地址，需要action\key\login三个参数
+      if ( $message && !wp_mail($user_email, '密码重置请求', $message) ) {
+          echo "<div class='error'>邮件发送失败-原因未知。</div>";
+          exit();
+      } else {
+          echo "<div class='success'>我们已经在给你发送的邮件中说明了重置密码的各项事宜，请注意查收。</div>";
+          exit();
+      }
+  } else {
+      wp_get_header(); ?>
+  <div class="reg_main">
+    <div class="reg_inner">
+      <div class="reg_inner_header">
+        <div class="rih_left"> 密码 </div>
+        <div class="rih_left2" onclick="window.location.href='<?php the_permalink();?>'"> 登 陆 </div>
+      </div>
+      <div class="reg_mid">
+        <div class="reg_mid_left">
+      <div id="result"></div><!--错误信息-->
+          <div class="reg_form">
+        <form class="user_form" id="wp_pass_reset" action="" method="post">
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control text" name="user_input" placeholder="用户名/邮箱" value="" />
+          <i class="fa fa-user"></i>
+        </div>    
+        <input type="hidden" name="action" value="tg_pwd_reset" />
+        <input type="hidden" name="tg_pwd_nonce" value="<?php echo wp_create_nonce("tg_pwd_nonce"); ?>" />      
+        <!--wp_create_nonce函数创建随机数，用于安全验证-->
+        <div class="kong20"></div>
+        <button type="submit" name="submit" id="submitbtn" class="login_btn" />重置密码</button>
+          <script type="text/javascript">
+        $("#wp_pass_reset").submit(function() {
+          $('#result').html('<span class="loading" style="display: block;text-align: center;height:40px;line-height:40px;">正在提交申请...</span>').fadeIn();
+          var input_data = $('#wp_pass_reset').serialize();
+          $.ajax({
+            type: "POST",
+            url:  "<?php echo cx_redirect_canonical(get_permalink($post->ID)); ?>?wp_type=pwd",
+            data: input_data,
+            success: function(msg){
+              $('.loading').remove();
+              $('<div>').html(msg).appendTo('div#result').hide().fadeIn('slow');
+            }
+          });
+          return false;
+        });
+        </script>
+            </form>
+          </div>
+          <?php cx_QQ_wobo_login('padding-top:75px');?>
+        </div>
+        <div class="reg_mid_right">
+          <div class="rmr_ad" style="background:#fff"> <?php cx_ad_zhenghe(4);?> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php 
+  }
+  } else {
+      wp_redirect($home_url_re); exit;
+  }
+
+break;case 'redirect':
+  //注册代码
+  if(is_user_logged_in()){
+      wp_redirect($home_url_re); exit;  
+    } 
+  global $register_answers;
+  if( !empty($_POST['ludou_reg']) ) {
+      $error = '';
+      $sanitized_user_login = sanitize_user( $_POST['user_login'] );
+      $user_email = apply_filters( 'user_registration_email', $_POST['user_email'] );
+  
+    // Check the username
+    if ( $sanitized_user_login == '' ) {
+      $error .= '<i class="fa fa-warning"></i> 请输入用户名。<br />';
+    } elseif ( ! validate_username( $sanitized_user_login ) ) {
+      $error .= '<i class="fa fa-warning"></i> 此用户名包含无效字符，请输入有效的用户名<br />。';
+      $sanitized_user_login = '';
+    } elseif ( username_exists( $sanitized_user_login ) ) {
+      $error .= '<i class="fa fa-warning"></i> 该用户名已被注册，请再选择一个。<br />';
+    }elseif ( $user_email == '' ) {
+      // Check the e-mail address   
+        $error .= '<i class="fa fa-warning"></i> 请填写电子邮件地址。<br />';
+    } elseif ( ! is_email( $user_email ) ) {
+      $error .= '<i class="fa fa-warning"></i> 电子邮件地址不正确。！<br />';
+      $user_email = '';
+    } elseif ( email_exists( $user_email ) ) {
+        $error .= '<i class="fa fa-warning"></i> 该电子邮件地址已经被注册，请换一个。<br />';
+    }elseif(strlen($_POST['user_pass']) < 6){
+      // Check the password
+      $error .= '<i class="fa fa-warning"></i> 密码长度至少6位!<br />';
+    }elseif($_POST['user_pass'] != $_POST['user_pass2']){
+      $error .= '<i class="fa fa-warning"></i> 两次输入的密码必须一致!<br />';
+    }elseif($error == '') {
+      $user_id = wp_create_user( $sanitized_user_login, $_POST['user_pass'], $user_email );
+      if ( ! $user_id ) {
+        $error .= sprintf( '<i class="fa fa-warning"></i> 无法完成您的注册请求... 请联系<a href=\"mailto:%s\">管理员</a>！<br />', get_option( 'admin_email' ) );
+        exit;
+      }else if (!is_user_logged_in()) {
+        $user = get_user_by('login', $sanitized_user_login);
+        $user_id = $user->ID;
+        // 自动登录
+        wp_set_current_user($user_id, $user_login);
+        wp_set_auth_cookie($user_id);
+        do_action('wp_login', $user_login);
+        wp_redirect( $home_url_re.'/wp-admin' ); exit;  
+      }
+    } 
+  }
+  ?>
+  <div class="reg_main">
+      <div class="reg_inner">
+        <div class="reg_inner_header">
+          <div class="rih_left"> 注 册 </div>
+          <div class="rih_left2" onclick="window.location.href='<?php the_permalink();?>'"> 登 录 </div>
+        </div>
+        <div class="reg_mid">
+            <div class="reg_mid_left">
+            <?php if(!empty($error)) echo '<p class="ludou-error">'.$error.'</p>';?>
+              <div class="reg_form">
+              <?php if(get_option('users_can_register' ) == 1){?>
+              <form name="registerform" method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" class="ludou-reg">
+                    <button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="user_login" placeholder="用户名" value="<?php if(!empty($sanitized_user_login)) echo $sanitized_user_login; ?>" data-fv-field="username">
+                  <i class="fa fa-user"></i>
+              </div>
+
+              <div class="kong10"></div>
+              <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="user_email" placeholder="电子邮箱" value="<?php if(!empty($user_email)) echo $user_email; ?>" data-fv-field="username">
+                  <i class="fa fa-envelope"></i>
+              </div>
+
+                    <div class="kong10"></div>
+              <div class="form-group has-feedback">
+                        <input type="password" class="form-control" name="user_pass" placeholder="密码(6位以上)" id="password" data-fv-field="pass">
+                  <i class="fa fa-key"></i>
+              </div>
+
+              <div class="kong10"></div>
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" name="user_pass2" placeholder="重复密码" id="password" data-fv-field="pass">
+                  <i class="fa fa-key"></i>
+              </div>
+              <?php do_action('register_form');?>
+                    <div class="kong20"></div>
+                    <div>
+                  <input type="hidden" name="ludou_reg" value="ok" />
+                  <button type="submit" name="wp-submit" id="wp-submit" class="login_btn" />马上注册</button>
+                    </div>
+                  </form>
+                  <?php }else{
+                    echo "未开启注册功能！";
+                    } ?>
+              </div><!--.form-->
+              <?php cx_QQ_wobo_login();?>
+            </div><!--.left-->
+            <div class="reg_mid_right">
+              <div class="rmr_ad" style="background:#fff"> <?php cx_ad_zhenghe(4);?> </div>
+            </div>
+        </div><!--.mid-->
+      </div>
+  </div>
+  <?php
+break;default:
+  //登录页面
+  if(!isset($_SESSION)) session_start();
+  if( isset($_POST['ludou_token']) && ($_POST['ludou_token'] == $_SESSION['ludou_token'])) {
+    $error = '';
+    $secure_cookie = false;
+    $user_name = sanitize_user( $_POST['log'] );
+    $user_password = $_POST['pwd'];
+    if ( empty($user_name) || !validate_username( $user_name ) ) {
+        $error .= '<i class="fa fa-warning"></i> 请输入有效的用户名。<br />';
+        $user_name = '';
+    }elseif( empty($user_password) ) {
+      $error .= '<i class="fa fa-warning"></i> 请输入密码。<br />';
+    }
+
+    if($error == '') {
+        if( !empty($user_name) && !force_ssl_admin() ) {
+          $user = get_user_by('login', $user_name);
+            if($user) {
+              if(get_user_option('use_ssl', $user->ID)) {
+                  $secure_cookie = true;
+                  force_ssl_admin(true);
+              }
+            }
+        }
+
+        if ( isset( $_GET['r'] ) ) {
+            $redirect_to = $_GET['r'];
+        }else{
+            $redirect_to = $home_url_re;
+        }
+
+        if (!$secure_cookie && is_ssl() && force_ssl_login() 
+          && !force_ssl_admin() && ( 0 !== strpos($redirect_to, 'https') ) 
+          && ( 0 === strpos($redirect_to, 'http'))){
+          $secure_cookie = false; 
+        }
+
+        $creds = array();
+        $creds['user_login'] = $user_name;
+        $creds['user_password'] = $user_password;
+        $creds['remember'] = !empty( $_POST['rememberme'] );
+        $user = wp_signon( $creds, $secure_cookie );
+        if (is_wp_error($user)) {
+          $error .= $user->get_error_message();
+        }else {
+          unset($_SESSION['ludou_token']);
+          if ( wp_redirect($redirect_to) )exit;
+        }
+    }
+    unset($_SESSION['ludou_token']);
+  }
+
+  $rememberme = !empty( $_POST['rememberme'] );
+  $token = md5(uniqid(rand(), true));
+  $_SESSION['ludou_token'] = $token;
+  wp_get_header();
+  if (!is_user_logged_in()) { ?>
+    <div class="reg_main">
+      <div class="reg_inner">
+        <div class="reg_inner_header">
+          <div class="rih_left"> 登 陆 </div>
+          <div class="rih_left2" onclick="window.location.href='<?php the_permalink();?>?wp_type=redirect'"> 注 册 </div>
+          </div>
+        <div class="reg_mid">
+          <div class="reg_mid_left">
+            <?php if(!empty($error)) echo '<p class="ludou-error">'.$error.'</p>';?>
+            <div class="reg_form">
+              <form name="loginform" method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" class="ludou-login">
+
+                <div class="form-group has-feedback">
+                  <input type="text" class="form-control" id="log" name="log" placeholder="用户名/邮箱" value="<?php if(!empty($sanitized_user_login)) echo $sanitized_user_login; ?>">
+                  <i class="fa fa-user"></i>
+                </div>
+                  <div class="kong10"></div>
+
+                <div class="form-group has-feedback">
+                  <input type="password" id="pwd" class="form-control" name="pwd" placeholder="密码">
+                  <i class="fa fa-key"></i>
+                </div>
+                <div class="kong10"></div>
+
+                <?php do_action( 'login_form' );?>
+
+                <div style="height: auto;overflow: hidden;max-width: 400px;">
+                        <div style="float: left;">
+                          <input name="rememberme" type="checkbox" id="rememberme" value="1" <?php checked( $rememberme ); ?> />
+                            记住我
+                    </div>
+                          <div style="float: right;"> 
+                    <a href="<?php the_permalink();?>?wp_type=pwd" class="link1">忘记密码？</a>
+                    </div>
+                      </div> 
+          
+                <div class="kong20"></div>
+                <input type="hidden" name="redirect_to" value="<?php if(isset($_GET['r'])) echo $_GET['r']; ?>" />
+                <input type="hidden" name="ludou_token" value="<?php echo $token; ?>" />
+                <button type="submit" name="wp-submit" id="wp-submit" class="login_btn" />马上登陆</button>
+                    </form>
+                </div>
+            <?php cx_QQ_wobo_login('padding-top:75px');?>
+          </div>
+          <div class="reg_mid_right">
+            <div class="rmr_ad" style="background:#fff"> <?php cx_ad_zhenghe(4);?> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php
+  }else{
+    wp_redirect($home_url_re); exit;  } 
+}
+get_footer();

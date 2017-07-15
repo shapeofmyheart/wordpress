@@ -1,0 +1,13 @@
+<?php
+/**
+ * @package WordPress
+ * @subpackage Filesystem
+ * @since 2.3.0
+ */
+
+function junla_wp_handle_upload_prefilter($file){
+$time=date("Y-m-d");
+$file['name'] = $time."".mt_rand(1,100).".".pathinfo($file['name'] , PATHINFO_EXTENSION);
+return $file;
+}
+add_filter('wp_handle_upload_prefilter', 'junla_wp_handle_upload_prefilter');

@@ -1,0 +1,224 @@
+.reg_main {
+    height: auto;
+    background: #f0f0f0;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+.reg_inner {
+    width: 100%;
+    max-width: 1180px;
+    background: #fff;
+    margin: 0 auto;
+    min-height: 640px;
+    height: auto;
+    overflow: hidden;
+}
+.reg_inner_header {
+    background: #fafafa;
+    height: 80px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #f3f3f3;
+}
+.ludou-error, .error {
+    background-color: #F66;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.rih_left {
+    width: 120px;
+    height: 80px;
+    background-image: url(http://www.chenxingweb.com/bars.svg);
+    border-right: 1px solid #f3f3f3;
+    float: left;
+    text-align: center;
+    line-height: 80px;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+    background: #fff;
+}
+.rih_left2 {
+    width: 120px;
+    height: 80px;
+    border-right: 1px solid #f3f3f3;
+    float: left;
+    background: #fafafa;
+    text-align: center;
+    line-height: 80px;
+    font-size: 24px;
+    cursor: pointer;
+    border-bottom: 1px solid #f3f3f3;
+    color: #707070;
+}
+.rih_left2 {
+    width: 120px;
+    height: 80px;
+    border-right: 1px solid #f3f3f3;
+    float: left;
+    background: #fafafa;
+    text-align: center;
+    line-height: 80px;
+    font-size: 24px;
+    cursor: pointer;
+    border-bottom: 1px solid #f3f3f3;
+    color: #707070;
+}
+.rih_left5 {
+    width: 820px;
+    background: #fafafa;
+    height: 80px;
+    float: left;
+    border-bottom: 1px solid #f3f3f3;
+}
+.reg_mid_left {
+    float: left;
+    width: 720px;
+    height: auto;
+    height: 560px;
+    border-right: 1px solid #f3f3f3;
+}
+.reg_form {
+    margin-left: 90px;
+    margin-top: 50px;
+    width: 400px;
+}
+.form-group {
+    width: 400px;
+	margin-bottom: 15px;
+}
+.has-feedback {
+    position: relative;
+}
+.has-feedback .form-control {
+    padding-right: 42.5px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px 6px 55px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.kong10 {
+    height: 10px;
+}
+.link1 {
+    color: #a8a8a8;
+}
+.kong20 {
+    height: 20px;
+}
+.login_btn {
+    display: block;
+    height: 50px;
+    background: #ff6666;
+    border: none;
+    width: 100%;
+    max-width: 400px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.other_login {
+    width: 650px;
+    border-top: 1px solid #eeeeee;
+    margin-top: 70px;
+    margin-left: 38px;
+    padding-left: 54px;
+    padding-top: 30px;
+}
+.qq_btn {
+    width: 130px;
+    height: 40px;
+    background: #6699cc;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 3px;
+}
+.weibo_btn {
+    width: 130px;
+    height: 40px;
+    background: #ff3443;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 3px;
+}
+.qq_btn a, .weibo_btn a {
+	color:#fff
+}
+.reg_mid_right {
+    float: right;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+.rmr_ad {
+    width: 420px;
+    height: 520px;
+    background: #cccccc;
+}
+.has-feedback i {
+    position: absolute;
+    top: 1px;
+    line-height: 22px;
+    width: 45px;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 5px 0 0 5px;
+    color: #CCCCCC;
+    font-size: 1.2em;
+    border-right: 1px solid #CCC;
+}
+.disanfang{
+    float: left;
+    font-size:16px;
+    color:#666666;
+    height:40px;
+    line-height:40px;
+}
+
+@media (max-width:600px) {
+    .reg_inner_header, .rih_left, .rih_left2 {
+        height: 60px;
+        line-height: 60px;
+        font-size: 20px;
+    }
+    .reg_form {
+        margin-left: 5%;
+        width: 90%;
+    }
+    .reg_mid_left {
+        width: 100%;
+        max-width: 720px
+    }
+    .form-group {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 15px;
+    }
+    .reg_mid_right {
+        display: none;
+    }
+    .disanfang {
+        float: none;
+    }
+    .other_login {
+        width: 100%;
+        margin-left: 0;
+    }
+}

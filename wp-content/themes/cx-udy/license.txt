@@ -1,0 +1,7 @@
+/**
+您授权的域名：<host>www.gyguan.com</host> 
+授权更新时间：<time>2017-06-14 19:54:32</time>
+**/
+<sq>
+7547959aa2ceafc5ab0c926dbb60967b
+</sq>

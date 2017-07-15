@@ -1,0 +1,6 @@
+#toplevel_page_qqworld-collector .wp-menu-image:before {
+	content: '\f527';
+}
+#menu-posts-qqworld-collections .wp-menu-image:before {
+	content: '\f155';
+}

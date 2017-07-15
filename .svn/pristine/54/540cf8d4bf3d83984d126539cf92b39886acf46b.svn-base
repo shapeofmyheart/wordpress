@@ -1,0 +1,121 @@
+.chenxing_field_au {
+    width: calc(50% - 50px);
+    float: left;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    background: #efeeee;
+    height: 300px;
+    line-height: 300px;
+    position: relative;
+}
+.cx_field_area {
+    margin: 10px;
+    height: 280px;
+    border: dashed 3px #e2dfdf;
+}
+._cx_post_images{
+    display: none;
+}
+a#_cx_post_images {
+    padding: 10px;
+    background: #03A9F4;
+    border-radius: 2px;
+    color: #fff;
+    border: solid 1px #008ece;
+}
+div#_cx_post_images_preview{
+    width: 90%;
+    height: 275px;
+    display: none;
+}
+div#_cx_post_images_preview img{
+    max-width: 90%;
+    max-height: 100%;
+    padding: 5px;
+    width: auto;
+    height: auto;
+}
+.cat_format {
+    float: right;
+    width: 50%;
+}
+.cat_post_group {
+    height: 110px;
+}
+.chen_field_area label {
+    margin: 0 20px;
+    float: left;
+}
+
+/** tag  标签设置 */
+.tag_mun {
+    font-size: 0.8em;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.tag_mun  input{
+    display: none;
+}
+.tag_mun label {
+    background: #bdbdbd;
+    padding: 4px 5px;
+    border-radius: 2px;
+    color: #504e4e;
+    position: relative;
+    margin-right: 8px;
+    padding-right: 20px;
+}
+.tag_mun label:after {
+    content: "X";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 24px;
+    line-height: 24px;
+    width: 15px;
+    text-align: center;
+    background: #888;
+}
+.tag_mun  input:checked + label{
+    background: #fd7878;
+    color: #f5f4f4;
+}
+.post_tag_a{
+    position: relative;
+}
+.post_tag_a a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 150px;
+    background: #ff5c5c;
+    border-radius: 0 5px 5px 0;
+    background-image: url(http://www.chenxingweb.com/bars.svg);
+    color: #e2dfdf;
+    font-size: 18px;
+    line-height: 40px;
+}
+ul.post_rm_tag {
+    list-style-type: none;
+}
+ul.post_rm_tag li {
+    float: left;
+    margin: 0 5px;
+}
+.db_none_chen {
+    color: #2196F3;
+    font-size: 1.3em;
+    line-height: 20px;
+    margin: 10px auto;
+    cursor: pointer;
+}
+.db_form_chen {
+    max-width: 500px;
+    margin: 0 auto;
+    display: none;
+}
+.db_form_chen .help-block{
+    margin: 10px 0 0;
+}

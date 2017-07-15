@@ -1,0 +1,217 @@
+#banner {
+	max-width: 100%;
+	display: block;
+	margin: 20px 0;
+	border: 10px solid #fff;
+	box-sizing: border-box;
+	box-shadow: 3px 3px 3px rgba(0,0,0,.1);
+}
+.post-php #banner, .post-new-php #banner {
+	border: 10px solid #f7f7f7;
+}
+#qqworld-collector-button span.wp-media-buttons-icon:before {
+	font: 400 18px/1 dashicons;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	content: '\f328';
+}
+#noty_center_layout_container img {
+	vertical-align: middle;
+}
+ul[id$="_layout_container"] > li {
+	margin-bottom: 0;
+}
+#collect-form {
+	width: 100%;
+}
+#collect-form .label {
+	width: 100px;
+}
+#TB_ajaxContent {
+	width: auto !important;
+}
+
+/* for post-type-qqworld-collections */
+.post-type-qqworld-collections #misc-publishing-actions {
+	display: none;
+}
+.post-type-qqworld-collections #categories_block > .postbox{
+	float: left;
+	margin-right: 15px;
+	min-width: 180px;
+}
+.post-type-qqworld-collections #categories_block .inside {
+	padding-right: 30px;
+	overflow: auto;
+	max-height: 315px;
+}
+.post-type-qqworld-collections #categories_block .hndle {
+	padding: 5px 10px;
+}
+.post-type-qqworld-collections #categories_block .children {
+	margin: 5px 0 0 25px;
+}
+.post-type-qqworld-collections #test-grab-links-list,
+.post-type-qqworld-collections #test-grab-contents-container {
+	display: none;
+}
+
+/* meta form in post.php */
+.meta_form_table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.meta_form_table caption {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 3;
+}
+.meta_form_table thead tr,
+.meta_form_table tfoot tr {
+	background: #f7f7f7;
+	border-bottom: 1px solid #d7d7d7;
+}
+.meta_form_table th,
+.meta_form_table td {
+	padding: 10px;
+}
+.meta_form_table tbody tr:hover {
+	background: #fffdbe;
+}
+.meta_form_table td {
+	border-bottom: 1px solid #d7d7d7;
+}
+.meta_form_table td.label{
+	width: 100px;
+}
+.meta_form_table .minimum {
+	width: 1px;
+}
+
+code.description {
+	padding: 10px;
+    display: block;
+    border-top: 2px solid #0085ba;
+    border-bottom: 1px solid #ddd;
+    background: #f7f7f7;
+	width: 100%;
+    box-sizing: border-box;
+}
+code.description table {
+	width: 100%;
+	margin-top: 20px;
+	border-top: 1px solid #ddd;
+	background: #fff;
+	border-collapse: collapse;
+}
+code.description table caption {
+	font-weight: bold;
+	border-bottom: 1px solid #eee;
+	padding: 8px;
+}
+code.description table td {
+	padding: 5px 8px;
+	border-bottom: 1px solid #eee;
+	word-break: break-all;
+}
+
+#grab-links-table {
+	margin: 10px 0;
+}
+#TB_ajaxContent {
+	position: relative;
+}
+#submit-grabbed-links {
+	height: 45px;
+	background: #ccc;
+	width: 100%;
+	text-align: right;
+	padding: 10px;
+	box-sizing: border-box;
+	box-shadow: 0 0 25px rgba(0,0,0,.3);
+}
+
+.post-type-qqworld-collections .meta_form_table .icon.s16x16.arrow-right {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAABmJLR0QA/wD/AP+gvaeTAAAAxElEQVQokY3QzUpCURSG4UfDWXcUjSLMkQ0aREhEOIkkAiclETaK9JK8m4pQDIyEfqCgQfvAYeU+tGb73e/HWnxQwwWecI8jFXOJBQ7RwyfOc/IUndJ7tyrwiG5g2cAZltj8b2CIN2wF3sQ7rmJghFdsZDa0Y2CcCdxiUg/wBQ2sB/6NtTIYpPt2gthOZxwU4M7qRvbxhX4BuvhAK4itxIdl+ICTIBaV3QRuntYVs+238z8iXOMZeziuEqGePheY4TQn/gCHWzH5LLPeJAAAAABJRU5ErkJggg==);
+	width: 11px;
+	height: 16px;
+	display: block;
+	vertical-align: middle;
+}
+
+#html-tags-table .collect_html_tag_filter,
+#selector-table .collect_selector_filter {
+	width: 120px;
+	max-width: 100%;
+}
+#regex-table .collect_regex_pattern_filter,
+#regex-table .collect_regex_replacement_filter {
+	width: 100%;
+}
+.post-type-qqworld-collections #preset,
+.post-type-qqworld-collections #save-action {
+	display: none;
+}
+#preset blockquote {
+	margin: 0 13px 13px 0;
+}
+#preset blockquote a {
+	margin-right: 5px;
+}
+#test-grab-links-table {
+	width: 100%;
+}
+
+/*  post page  */
+#all-media-list li {
+	position: relative;
+	border: 1px solid #fff;
+}
+#all-media-list li:hover {
+	border: 1px solid #c00;
+}
+#all-media-list li input {
+	position: absolute;
+	left: 5px;
+	top: 9px;
+}
+#all-media-list li span {
+	display: block;
+	position: absolute;
+	right: 5px;
+	bottom: 9px;
+	background: #fff;
+	border-radius: 3px;
+	padding: 3px 5px;
+	box-shadow: 0 0 5px rgba(0,0,0,.15);
+	font-size: 11px;
+}
+#all-media-list img {
+	width: 130px;
+	height: auto;
+}
+
+/* import collection configuration form */
+#import_collection_configuration_form textarea {
+	width: 100%;
+	height: 210px;
+}
+#help_me_to_create_collection_project_form textarea {
+	width: 100%;
+	height: 50px;
+}
+#help_me_to_create_collection_project_list {
+	width: 100%;
+	border-collapse: collapse;
+}
+	#help_me_to_create_collection_project_list thead tr {
+		background: #f7f7f7;
+		border: 1px solid #ddd;
+		border-bottom: 2px solid #ddd;
+	}
+	#help_me_to_create_collection_project_list th,
+	#help_me_to_create_collection_project_list td {
+		padding: 10px 5px;
+		border-bottom: 1px solid #e4e4e4;
+	}
